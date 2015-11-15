@@ -1,0 +1,9 @@
+F:\cs\2015\荣耀辅助\荣耀辅助\bin\Debug\荣耀辅助.exe.config
+F:\cs\2015\荣耀辅助\荣耀辅助\bin\Debug\荣耀辅助.exe
+F:\cs\2015\荣耀辅助\荣耀辅助\bin\Debug\荣耀辅助.pdb
+F:\cs\2015\荣耀辅助\荣耀辅助\obj\Debug\荣耀辅助.csprojResolveAssemblyReference.cache
+F:\cs\2015\荣耀辅助\荣耀辅助\obj\Debug\荣耀辅助.Form1.resources
+F:\cs\2015\荣耀辅助\荣耀辅助\obj\Debug\荣耀辅助.Properties.Resources.resources
+F:\cs\2015\荣耀辅助\荣耀辅助\obj\Debug\荣耀辅助.csproj.GenerateResource.Cache
+F:\cs\2015\荣耀辅助\荣耀辅助\obj\Debug\荣耀辅助.exe
+F:\cs\2015\荣耀辅助\荣耀辅助\obj\Debug\荣耀辅助.pdb
