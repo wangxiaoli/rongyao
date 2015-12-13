@@ -76,4 +76,24 @@ namespace 荣耀辅助
             if (t != 0) Thread.Sleep(t);
         }
     }
+    public class MemeryInfo
+    {
+        //使用GlobalMemoryStatus API取物理内存大小及状态 
+        [DllImport("kernel32")]
+        public static extern void GlobalMemoryStatus(ref MEMORY_INFO meminfo);
+
+        //定义内存的信息结构 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MEMORY_INFO
+        {
+            public uint dwLength;
+            public uint dwMemoryLoad;//正在使用 
+            public UInt64 dwTotalPhys;//物理内存大小 
+            public UInt64 dwAvailPhys;//可使用的物理内存 
+            public UInt64 dwTotalPageFile;//交换文件总大小 
+            public UInt64 dwAvailPageFile;
+            public UInt64 dwTotalVirtual;//总虚拟内存 
+            public UInt64 dwAvailVirtual;
+        }
+    }
 }
