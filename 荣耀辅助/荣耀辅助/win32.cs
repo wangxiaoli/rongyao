@@ -46,7 +46,13 @@ namespace 荣耀辅助
         public static void MouseWheel(IntPtr handle, int x, int y, int t)
         {
 
-            PostMessage(handle, WM_MOUSEWHEEL, 0+(WHEEL_DELTA<<16), x + (y << 16));
+            PostMessage(handle, WM_MOUSEWHEEL, 0 + (WHEEL_DELTA << 16), x + (y << 16));
+            if (t != 0) Thread.Sleep(t);
+        }
+        public static void MouseWheelx(IntPtr handle, int x, int y, int t)
+        {
+
+            PostMessage(handle, WM_MOUSEWHEEL, 0 + ((-WHEEL_DELTA) << 16), x + (y << 16));
             if (t != 0) Thread.Sleep(t);
         }
 

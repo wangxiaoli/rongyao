@@ -33,9 +33,9 @@ namespace 荣耀辅助
         int[] firstressources = new int[] { 0, 0, 0, 0 };
         bool firstshow = true;
         bool show = false;
-        List<Point> resourcePoint;
-        Bitmap ssfind;
-        Bitmap ssfind2;
+        List<Point> resourcePoint; 
+        Bitmap nvwang;
+        Bitmap icoCOC;
 
         List<Point> clickPoint1 = new List<Point>();
         List<Point> clickPoint2 = new List<Point>();
@@ -96,12 +96,19 @@ namespace 荣耀辅助
             Thread.Sleep(2000);
             COC.runbs();
         }
-
+        bool isrunscript = false;
         private void button3_Click(object sender, EventArgs e)
         {
-            button3.Enabled = false;
-            tabControl1.SelectedIndex = 3;
-            scriptRunning();
+            //button3.Enabled = false;
+            if (button3.Text=="运行")
+            {
+                tabControl1.SelectedIndex = 3;
+                button3.Text = "停止";
+                isrunscript = true;
+                scriptRunning();
+                return;
+            }
+            isrunscript = false;
         }
 
         private void addPoints(string ss, List<Point> list)
@@ -117,6 +124,7 @@ namespace 荣耀辅助
 
         private void scriptRunning()
         {
+            setlog("运行脚本");
             startupCount = 0;
             int noreg = 0;
             int blackcount = 0;
@@ -125,8 +133,8 @@ namespace 荣耀辅助
             timer1.Enabled = true;
             Task.Factory.StartNew(() =>
             {
-                ssfind = OPImage.stringToBitmap("BAAAAAcAAAD/he///4Dq//+I8P//le//zVy4/6RUjv9pdZP//Ybu//+B7f//hO///5jw/9ldwf+2VJ7/iE5x//d75P//fOz//4Ds//+I7v/nT8//wEar/5A8ff//eOj//3jo//+A6P//nvf/2ETI/648nv98MWj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
-                ssfind2 = OPImage.stringToBitmap("BAAAAAQAAADQXLj/v1io/6dUk/+RUYD/2FzA/8hYsf+xVJ3/mlCI/+BLyP/QR7v/tkKk/509jP/YRMj/yECw/6w8nP+ROIH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
+                icoCOC = OPImage.stringToBitmap("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JUaF/xIkU/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
+                nvwang = OPImage.stringToBitmap("CgAAAAoAAACxbxf/1ODm/66+3/+UoPj/uMX//8XX//+7z///sMb+/6a8/v+Ys///ejoj/7fL2f+Tncv/kZDx/6u5+/+70f//uM7//7DG+/+nvP7/oLb//1teWv9/kqb/bW66/4OB3/+gsPj/tMr+/7bK/f+rwfv/qLz+/6i6/P9LMi//Sk6S/11mu/95dNT/lqT4/6W7/v+nv/v/pr37/6jB+/+uwfr/QDNg/11swv+Fluz/k6T4/6G1+P+htfr/m6L4/5Oh9/+uxP//sMT5/0MtWP9nd8j/r8L7/8jZ///Q3///ydz//5ql8/9ITrP/jqHs/6G1+P81H0L/NzuT/2hz1f+Nme7/nabz/5ul9P94btr/KjeJ/1ppvv+Lm+T/Kxs7/yYtaf9PTaj/ZWO9/4B83P+PhOj/Y1PD/ycycv9QX7D/eYXV/xgcRP8nL2n/Q0ub/1pZrf+AbND/iHfd/01Ir/8vPYD/VGGz/3F+0/8eI1X/NDl1/0hPnv9jY7z/gHXZ/4B22v88SZX/RVem/2NyxP96ieH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=");
                 ORC.init();
                 string pointsss = "251,163 226,177 208,190 345,94 363,86 325,110 120,256 116,271 91,280 85,298 99,283 125,257 135,254 148,245 167,218 194,206 227,182 251,169 263,160 281,151 296,138 312,125 338,110 358,96 346,97 336,105 327,110 311,119 291,141 262,161 227,182 245,160 210,197 188,209 170,222 159,236 136,253 125,257 123,261 121,265";
                 addPoints(pointsss, clickPoint1);
@@ -137,7 +145,7 @@ namespace 荣耀辅助
                 pointsss = "584,469 601,453 632,430 686,385 703,375 465,543 488,536 493,529 507,525 511,512 521,512 540,494 533,504 525,507 546,493 555,479 576,468 586,466 603,449 614,448 622,445 644,420 635,422 629,425 657,403 670,398 681,389 697,386 699,377 726,366 724,359 703,368 718,363";
                 addPoints(pointsss, clickPoint4);
 
-                while (!IsDisposed)
+                while (!IsDisposed&&isrunscript)
                 {
                     IntPtr gH = win32.FindWindow(null, "BlueStacks App Player");
                     if (gH != IntPtr.Zero)
@@ -175,6 +183,8 @@ namespace 荣耀辅助
                                 sleep(0, 2);
                                 continue;
                             }
+
+                            win32.MouseWheel(gH, 700, 370, 500);
 
                             setlog("COC启动成功。");
                             try
@@ -239,11 +249,19 @@ namespace 荣耀辅助
                         }
                         if (OPImage.check(bm, "80 170 60 0 d9e5ea20e5c12c1d8321a565a3c7cd3e bs启动成功"))
                         {
+                            List<Point> ps = OPImage.GetImageContains(bm,icoCOC,0);
                             bm.Dispose(); noreg = 0; blackcount = 0;
                             startupCount = 0;
                             setlog("bs启动成功。");
-                            sleep(0, 2);
-                            COC.run();
+                            if (ps.Count>0)
+                            {
+                                win32.MouseClick(gH, ps[0].X, ps[0].Y, 0);
+                            }
+                            else
+                            {
+                                sleep(0, 2);
+                                COC.run();
+                            }
                             sleep(0, 5);
                             continue;
                         }
@@ -330,7 +348,7 @@ namespace 荣耀辅助
                             sleep(0, 5);
                             continue;
                         }
-                        if (OPImage.check(bm, "370 495 30 0 9f6f2afc34eebcd749a1d77b91bf9b6 村庄被打确定"))
+                        if (OPImage.check(bm, "370 495 10 0 a04bdb3608ab5978951e228e0461e1a 村庄被打确定"))
                         {
                             win32.MouseClick(gH, 402, 495, 0);
                             bm.Dispose(); noreg = 0; blackcount = 0;
@@ -343,7 +361,14 @@ namespace 荣耀辅助
                             win32.MouseClick(gH, 760, 50, 0);
                             bm.Dispose(); noreg = 0; blackcount = 0;
                             setlog("关闭");
-                            searchcount = 0;
+                            sleep(0, 3);
+                            continue;
+                        }
+                        if (OPImage.check(bm, "712 119 30 0 6fc36975c05299bcb17cafaa67356f5f 日志关闭按钮"))
+                        {
+                            win32.MouseClick(gH, 36, 165, 0);
+                            bm.Dispose(); noreg = 0; blackcount = 0;
+                            setlog("关闭");
                             sleep(0, 3);
                             continue;
                         }
@@ -388,6 +413,7 @@ namespace 荣耀辅助
                         startupCount = 0; blackcount = 0;
                         setlog("无法识别。循环0");
                         sleep(0, 5);
+                        noreg++;
                         if (noreg > 24)
                         {
                             setlog("无法识别。循环0,超时。");
@@ -402,9 +428,11 @@ namespace 荣耀辅助
                     }
                     sleep(0, 10);
                 }
+                isTimerstop = true;
 
             });
         }
+        bool isTimerstop=false;
 
         private void recogniseME(Bitmap bm)
         {
@@ -431,7 +459,7 @@ namespace 荣耀辅助
             int v4 = 0;
             try
             {
-                s = ORC.doORC(bm, 86, 102, 60);
+                s = ORC.doORC(bm, 90, 102, 44, 16);
                 if (!s.Contains("?"))
                 {
                     v4 = int.Parse(s);
@@ -458,7 +486,7 @@ namespace 荣耀辅助
 
         private void scriptKill()
         {
-            while (!IsDisposed)
+            while (!IsDisposed && isrunscript)
             {
                 IntPtr gH = win32.FindWindow(null, "BlueStacks App Player");
                 if (gH != IntPtr.Zero)
@@ -489,7 +517,7 @@ namespace 荣耀辅助
         private void scriptDo()
         {
             int noreg = 0;
-            while (!IsDisposed)
+            while (!IsDisposed && isrunscript)
             {
                 IntPtr gH = win32.FindWindow(null, "BlueStacks App Player");
                 if (gH != IntPtr.Zero)
@@ -528,12 +556,9 @@ namespace 荣耀辅助
                                 bm.Dispose();
 
 
-                                if (searchcount == 0)
+                                if (!isnvwang&&searchcount == 0)
                                 {
                                     setlog("军队满，搜鱼前造兵。");
-                                    win32.MouseClick(gH, 714, 337, 1000);
-                                    for (int i = 0; i < 75; i++)
-                                        win32.MouseClick(gH, 200, 360, 10);
                                     win32.MouseClick(gH, 714, 337, 1000);
                                     for (int i = 0; i < 75; i++)
                                         win32.MouseClick(gH, 200, 360, 10);
@@ -542,7 +567,10 @@ namespace 荣耀辅助
                                         win32.MouseClick(gH, 300, 360, 10);
                                     win32.MouseClick(gH, 714, 337, 1000);
                                     for (int i = 0; i < 75; i++)
-                                        win32.MouseClick(gH, 400, 360, 10);
+                                        win32.MouseClick(gH, 500, 360, 10);
+                                    win32.MouseClick(gH, 714, 337, 1000);
+                                    for (int i = 0; i < 75; i++)
+                                        win32.MouseClick(gH, 500, 360, 10);
                                     win32.MouseClick(gH, 147, 547, 10);
 
                                 }
@@ -563,13 +591,22 @@ namespace 荣耀辅助
                             win32.MouseClick(gH, 200, 360, 10);
                         win32.MouseClick(gH, 714, 337, 1000);
                         for (int i = 0; i < 75; i++)
-                            win32.MouseClick(gH, 200, 360, 10);
-                        win32.MouseClick(gH, 714, 337, 1000);
-                        for (int i = 0; i < 75; i++)
                             win32.MouseClick(gH, 300, 360, 10);
                         win32.MouseClick(gH, 714, 337, 1000);
+                        if(resourceCount>0)
+                        {
+                            resourceCount =0;
+                            for (int i = 0; i < 75; i++)
+                                win32.MouseClick(gH, 530, 205, 10);
+                            for (int i = 0; i < 75; i++)
+                                win32.MouseClick(gH, 400, 360, 10);
+                        }
+                        else
                         for (int i = 0; i < 75; i++)
-                            win32.MouseClick(gH, 400, 360, 10);
+                            win32.MouseClick(gH, 500, 360, 10);
+                        win32.MouseClick(gH, 714, 337, 1000);
+                        for (int i = 0; i < 75; i++)
+                            win32.MouseClick(gH, 500, 360, 10);
                         win32.MouseClick(gH, 147, 547, 10);
                         sleep(0, 30);
                         return;
@@ -643,6 +680,11 @@ namespace 荣耀辅助
                         bm.Dispose();
                         return;
                     }
+                    if (OPImage.check(bm, "712 119 30 0 6fc36975c05299bcb17cafaa67356f5f 日志关闭按钮"))
+                    {
+                        bm.Dispose();
+                        return;
+                    }
                     noreg++;
                     bm.Dispose();
                     setlog("无法识别。循环1");
@@ -662,13 +704,15 @@ namespace 荣耀辅助
         }
         int searchTimeout = 0;
         int searchcount = 0;
+        string findStr = "";
+        int resourceCount = 0;
         private void scriptSearcher()
         {
 
             //Music.prompt();
             bool start = true;
             // if (start)   return; 
-            while (!IsDisposed)
+            while (!IsDisposed && isrunscript)
             {
                 IntPtr gH = win32.FindWindow(null, "BlueStacks App Player");
                 if (gH != IntPtr.Zero)
@@ -711,6 +755,8 @@ namespace 荣耀辅助
                             s = s.Replace('?', '0');
                             v3 = int.Parse(s);
                         }
+                        resourceCount = 0;
+                        resourcePoint = new List<Point>();
                         int ddline = 150000;
                         // int kkline = 280000;
                         int bbss = v2;
@@ -742,7 +788,7 @@ namespace 荣耀辅助
                         if (canfight)
                         {
 
-                            int num = ImageFind.find1ine(bm, "-1819156 -1884948 -1950736 -2409237 -2212627 5 圣水65000x");
+                            int num = ImageFind.find1ine(bm, "-1949971 -2081554 -2343956 -1753107 -1620758 5 圣水65000x");
                             if (num == 4)
                                 v2 = v2 - num * 80000;
                             else
@@ -786,9 +832,8 @@ namespace 荣耀辅助
                                 else
                                 {
                                     pointlist = ImageFind.findzyCanxxoo(bm);
-                                    resourcePoint = new List<Point>();
                                     resourcePoint.AddRange(pointlist);
-                                    setlog("有资源的采集器数量:" + resourcePoint.Count);
+                                    setlog("有资源的采集器数量:" + (resourceCount = resourcePoint.Count));
                                 }
 
                             }
@@ -796,10 +841,42 @@ namespace 荣耀辅助
                         }
                         if (canfight)
                         {
+                            findStr = "目标死鱼 ";
+                        }
+                        else
+                        {
+                            findStr = "目标非死鱼 ";
+                        }
+                        string ch = ImageFind.findcitadel(bm);
+                        setlog(ch);
+                        if (ch.StartsWith("没有发现本") || ch.StartsWith("本在里面"))
+                        {
+
+                        }
+                        else
+                        {
+                            canfight = true;
+                        }
+                        findStr += ch;
+                        if (!canfight && ressourcesValues[3] > 600)
+                        {
+                            canfight = true;
+                            findStr = "降杯";
+                        }
+                        List<Point> nw = OPImage.GetImageContains(bm, nvwang, 0);
+                        isnvwang = false;
+                        if(nw.Count>0)
+                        {
+                            isnvwang = true;
+                            nvwangp = nw[0];
+                            setlog("有女王");
+                        }
+                        if (canfight)
+                        {
                             COC.save(bm);
-                            bm.Dispose();
+                            bm.Dispose(); bft = DateTime.Now;
                             Music.prompt();
-                            setlog("找到死鱼，开始战斗。");
+                            setlog(findStr + " 资源数：" + resourcePoint.Count + "，开始战斗。");
                             scriptFight();
                             searchTimeout = 0;
                             //continue;
@@ -807,7 +884,7 @@ namespace 荣耀辅助
                             return;
                         }
                         bm.Dispose();
-                        sleep(0, 4);//
+                        //sleep(0, 4);
                         bm = OPImage.GetWindowCapture(gH);
                         if (OPImage.check(bm, "659 520 10 0 56a54c4ab1fd559a451b9594b94b5b 下一个"))
                         {
@@ -904,7 +981,10 @@ namespace 荣耀辅助
                 }
             }
         }
+        DateTime bft = DateTime.Now;
         Random random = new Random();
+        bool isnvwang = false;
+        Point nvwangp = new Point();
 
         private void downpoint(List<Point> clickPoint)
         {
@@ -912,64 +992,83 @@ namespace 荣耀辅助
             IntPtr gH = win32.FindWindow(null, "BlueStacks App Player");
             if (gH == IntPtr.Zero)
                 return;
-            Bitmap bm = OPImage.GetWindowCapture(gH);
+            //Bitmap bm = OPImage.GetWindowCapture(gH);
 
 
-            if (OPImage.check(bm, "203 632 25 0 2b589e7750b77d66fe6ea022fd94f1 3胖子"))
+            //if (OPImage.check(bm, "203 632 25 0 2b589e7750b77d66fe6ea022fd94f1 3胖子"))
             {
-                win32.MouseClick(gH, 203, 632, 500);
+                win32.MouseClick(gH, 180, 632, 500);
                 for (int i = 0; i < 1; i++)
                 {
                     Point po = clickPoint[random.Next(3)];
                     win32.MouseClick(gH, po.X, po.Y, 200);
                 }
-                win32.MouseClick(gH, 64, 632, 1000);
+                //win32.MouseClick(gH, 64, 632, 1000);
             }
-            bm.Dispose();
+           // bm.Dispose();
 
-            win32.MouseClick(gH, 64, 632, 500);
-            bm = OPImage.GetWindowCapture(gH);
+            //win32.MouseClick(gH, 64, 632, 500);
+            //bm = OPImage.GetWindowCapture(gH);
 
-            if (OPImage.check(bm, "64 632 25 0 ecf8733a06053f5ceaf7649b7ae560 1黄毛"))
+            //if (OPImage.check(bm, "64 632 25 0 ecf8733a06053f5ceaf7649b7ae560 1黄毛"))
             {
 
-                win32.MouseClick(gH, 64, 632, 500);
+                win32.MouseClick(gH, 40, 632, 500);
 
                 Point po = clickPoint[random.Next(clickPoint.Count)];
                 for (int i = 0; i < 10; i++)
                 {
                     win32.MouseClick(gH, po.X, po.Y, 200);
                 }
-                win32.MouseClick(gH, 64, 632, 1000);
+                //win32.MouseClick(gH, 64, 632, 1000);
             }
-            bm.Dispose();
-            bm = OPImage.GetWindowCapture(gH);
-            if (OPImage.check(bm, "139 632 25 0 1bafed665c220fa145e592c9277d519 2mm"))
+            //bm.Dispose();
+            //bm = OPImage.GetWindowCapture(gH);
+            //if (OPImage.check(bm, "139 632 25 0 1bafed665c220fa145e592c9277d519 2mm"))
             {
 
-                win32.MouseClick(gH, 139, 632, 500);
+                win32.MouseClick(gH, 110, 632, 500);
 
                 Point po = clickPoint[random.Next(clickPoint.Count)];
                 for (int i = 0; i < 10; i++)
                 {
                     win32.MouseClick(gH, po.X, po.Y, 200);
                 }
-                win32.MouseClick(gH, 64, 632, 1000);
+                //win32.MouseClick(gH, 64, 632, 1000);
             }
-            bm.Dispose();
+            //bm.Dispose();
         }
 
         private void scriptFight()
         {
+
+            string[] strS = findStr.Split(new char[] { ' ' });
+            bool iscit = false;
+            if (strS.Length > 1)
+                if (strS[1].StartsWith("没有发现本") || strS[1].StartsWith("本在里面"))
+                {
+
+                }
+                else
+                {
+                    iscit = true;
+                }
+            if (findStr == "降杯") iscit = false;
+
+
             Rectangle r1 = new Rectangle(ImageFind.v1, new Size(345, 270));
             Rectangle r2 = new Rectangle(ImageFind.v2, new Size(345, 270));
             Rectangle r3 = new Rectangle(ImageFind.v4, new Size(345, 270));
             Rectangle r4 = new Rectangle(ImageFind.v9, new Size(345, 270));
             bool isw1 = false;
             int circleC = 0;
+            int citdownC = 0;
+            int vNoChangeC = 0;
             int[] nc = new int[] { 0, 0, 0, 0 };
             int[] nct = new int[] { 0, 0, 0, 0 };
+            int[] vs = new int[] { 0, 0, 0 };
             IntPtr gH = win32.FindWindow(null, "BlueStacks App Player");
+            /*
             if (gH != IntPtr.Zero)
             {
                 Bitmap bm = OPImage.GetWindowCapture(gH);
@@ -987,7 +1086,7 @@ namespace 荣耀辅助
                 {
                     setlog("有王1。");
                 }
-            }
+            }*/
             foreach (Point item in resourcePoint)
             {
                 if (r1.Contains(item))
@@ -1018,17 +1117,25 @@ namespace 荣耀辅助
                 jsok = false;
                 setlog("垂直计算错误。");
             }
+            if (iscit)
+            {
+                Point item = new Point(int.Parse(strS[3]), int.Parse(strS[4]));
+                dodit(gH, item);
+            }
             if (jsok)
             {
                 foreach (Point item in downps)
                 {
-                    win32.MouseClick(gH, 203, 632, 500);
+                    win32.MouseClick(gH, 250, 632, 500);
                     for (int i = 0; i < 1; i++)
                         win32.MouseClick(gH, item.X, item.Y, 200);
-                    win32.MouseClick(gH, 64, 632, 500);
+                    win32.MouseClick(gH, 40, 632, 500);
                     for (int i = 0; i < 6; i++)
                         win32.MouseClick(gH, item.X, item.Y, 200);
-                    win32.MouseClick(gH, 139, 632, 500);
+                    win32.MouseClick(gH, 180, 632, 500);
+                    for (int i = 0; i < 6; i++)
+                        win32.MouseClick(gH, item.X, item.Y, 200);
+                    win32.MouseClick(gH, 110, 632, 500);
                     for (int i = 0; i < 6; i++)
                         win32.MouseClick(gH, item.X, item.Y, 200);
                 }
@@ -1041,26 +1148,26 @@ namespace 荣耀辅助
                 {
                     if (r1.Contains(item))
                     {
-                        win32.MouseClick(gH, 203, 632, 500);
+                        win32.MouseClick(gH, 180, 632, 500);
                         for (int i = 0; i < 1; i++)
                             win32.MouseClick(gH, 239, 173, 200);
-                        win32.MouseClick(gH, 64, 632, 500);
+                        win32.MouseClick(gH, 40, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 253, 166, 200);
-                        win32.MouseClick(gH, 139, 632, 500);
+                        win32.MouseClick(gH, 110, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 208, 206, 200);
                         nc[0]++; nct[0]++;
                     }
                     if (r2.Contains(item))
                     {
-                        win32.MouseClick(gH, 203, 632, 500);
+                        win32.MouseClick(gH, 180, 632, 500);
                         for (int i = 0; i < 1; i++)
                             win32.MouseClick(gH, 575, 187, 200);
-                        win32.MouseClick(gH, 64, 632, 500);
+                        win32.MouseClick(gH, 40, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 555, 172, 200);
-                        win32.MouseClick(gH, 139, 632, 500);
+                        win32.MouseClick(gH, 110, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 613, 211, 200);
                         nc[1]++; nct[1]++;
@@ -1068,26 +1175,26 @@ namespace 荣耀辅助
 
                     if (r3.Contains(item))
                     {
-                        win32.MouseClick(gH, 203, 632, 500);
+                        win32.MouseClick(gH, 180, 632, 500);
                         for (int i = 0; i < 1; i++)
                             win32.MouseClick(gH, 236, 472, 200);
-                        win32.MouseClick(gH, 64, 632, 500);
+                        win32.MouseClick(gH, 40, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 221, 460, 200);
-                        win32.MouseClick(gH, 139, 632, 500);
+                        win32.MouseClick(gH, 110, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 242, 479, 200);
                         nc[2]++; nct[2]++;
                     }
                     if (r4.Contains(item))
                     {
-                        win32.MouseClick(gH, 203, 632, 500);
+                        win32.MouseClick(gH, 180, 632, 500);
                         for (int i = 0; i < 1; i++)
                             win32.MouseClick(gH, 603, 454, 200);
-                        win32.MouseClick(gH, 64, 632, 500);
+                        win32.MouseClick(gH, 40, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 613, 450, 200);
-                        win32.MouseClick(gH, 139, 632, 500);
+                        win32.MouseClick(gH, 110, 632, 500);
                         for (int i = 0; i < 6; i++)
                             win32.MouseClick(gH, 604, 464, 200);
                         nc[3]++; nct[3]++;
@@ -1137,14 +1244,32 @@ namespace 荣耀辅助
                     }
 
             }
-            while (!IsDisposed)
+
+            while (!IsDisposed && isrunscript)
             {
                 gH = win32.FindWindow(null, "BlueStacks App Player");
                 if (gH != IntPtr.Zero)
                 {
+
+                    if (findStr == "降杯")
+                    {
+                        dodownppp(gH);
+                        sleep(0, 1);
+                        // findStr = "降杯";
+                        //continue;
+                    }
                     Bitmap bm = OPImage.GetWindowCapture(gH);
 
 
+
+
+                    if (OPImage.check(bm, "360 562 10 0 fb71dee1307286d413f8ea869f27822 战斗回营"))
+                    {
+                        bm.Dispose();
+                        setlog("完成战斗。");
+                        sleep(0, 1);
+                        return;
+                    }
 
                     if (OPImage.check(bm, "659 520 10 0 56a54c4ab1fd559a451b9594b94b5b 下一个"))
                     {
@@ -1153,10 +1278,72 @@ namespace 荣耀辅助
                         break;
                     }
 
+                    if (iscit && resourcePoint.Count == 0
+                      && OPImage.check(bm, "667 555 5 0 404d32d1d5247f1ab4c5d04fab40cd3f 战斗有心"))
+                    {
+                        bm.Dispose();
+                        setlog("偷本完成。");
+                        win32.MouseClick(gH, 64, 545, 1000);
+                        win32.MouseClick(gH, 514, 397, 200);
+                        sleep(0, 1);
+                        continue;
+                    }
+                    if (iscit && OPImage.check(bm, "514 397 10 0 f3d6d24e3d72d755794927d9dedfcc9 放弃战斗"))
+                    {
+                        bm.Dispose();
+                        win32.MouseClick(gH, 514, 397, 1000);
+                        sleep(0, 1);
+                        continue;
+                    }
+
                     if (OPImage.check(bm, "34 552 10 0 779d61f6bfb8ba4ffe71274c96d2c 结束战斗"))
                     {
                         if (!OPImage.check(bm, "659 520 10 0 56a54c4ab1fd559a451b9594b94b5b 下一个"))
                         {
+
+                            int v1 = 0;
+                            string s = ORC.doORC(bm, 80, 98, 70, 20, 240, 190, 240);
+                            s = s.Replace('?', '0');
+                            v1 = int.Parse(s);
+                            int v2 = 0;
+                            s = ORC.doORC(bm, 80, 124, 70, 20, 240, 240, 190);
+                            s = s.Replace('?', '0');
+                            v2 = int.Parse(s);
+                            int v3 = 0;
+                            if (OPImage.check(bm, "35 154 10 0 f03a3027f1a0bb86f4835e6fa0a86237 资源有黑水"))
+                            {
+                                s = ORC.doORC(bm, 80, 150, 70, 20, 230, 230, 230);
+                                s = s.Replace('?', '0');
+                                v3 = int.Parse(s);
+                            }
+                            if (v1 == vs[0] && v2 == vs[1] && v3 == vs[2])
+                            {
+                                vNoChangeC = -1;
+                            }
+                            vNoChangeC++;
+                            if (vNoChangeC > 60)
+                            {
+
+                                bm.Dispose();
+                                setlog("资源无增加。");
+                                win32.MouseClick(gH, 64, 545, 1000);
+                                win32.MouseClick(gH, 514, 397, 200);
+                                sleep(0, 1);
+                                if (circleC > 210)
+                                {
+                                    break;
+                                }
+
+
+                                continue;
+                            }
+                            vs[0] = v1; vs[1] = v2; vs[2] = v3;
+                            if (findStr == "降杯")
+                            {
+                                bm.Dispose();
+                                dodownppp(gH);
+                                continue;
+                            }
 
                             if (circleC == 10)
                             {
@@ -1169,8 +1356,9 @@ namespace 荣耀辅助
                                 }
                             }
 
-                            //setlog("战斗中。。。");
-                            if (circleC % 4 == 0)
+                            setlog("战斗中。。。");
+                            /*
+                            if (circleC % 40 == 0)
                                 Task.Factory.StartNew(() =>
                                 {
                                     try
@@ -1200,12 +1388,19 @@ namespace 荣耀辅助
                                     catch (Exception)
                                     {
                                     }
-                                });
+                                });*/
 
+
+                            if (iscit && citdownC == 0 && (circleC > 60 || (circleC > 30 && vNoChangeC > 30)))
+                            {
+                                citdownC++;
+                                Point item = new Point(int.Parse(strS[3]), int.Parse(strS[4]));
+                                dodit(gH, item, citdownC);
+                            }
 
                             circleC++;
 
-                            if (circleC % 6 == 0)
+                            if (circleC % 60 == 0)
                             {
                                 try
                                 {
@@ -1224,8 +1419,8 @@ namespace 荣耀辅助
                         }
 
                         bm.Dispose();
-                        sleep(0, 10);
-                        if (circleC > 18)
+                        sleep(0, 1);
+                        if (circleC > 210)
                         {
                             break;
                         }
@@ -1236,13 +1431,7 @@ namespace 荣耀辅助
 
 
 
-                    if (OPImage.check(bm, "360 562 10 0 fb71dee1307286d413f8ea869f27822 战斗回营"))
-                    {
-                        bm.Dispose();
-                        setlog("完成战斗。");
-                        sleep(0, 1);
-                        return;
-                    }
+
 
                     if (OPImage.check(bm, "403 418 46 0 97672a88e51eaa972b4e9bcb93f6181 请重试"))
                     {
@@ -1307,6 +1496,64 @@ namespace 荣耀辅助
             }
         }
 
+        private   void dodit(IntPtr gH, Point item, int cd = 0)
+        {
+            if (item.Y > 530)
+            {
+                win32.MouseWheelx(gH, 400, 350, 500);
+                item.X = 340;
+                item.Y = 555;
+            }
+            if (item.Y <150)
+            {
+                win32.MouseWheel(gH, 400, 350, 500);
+                item.X = 400;
+                item.Y = 60;
+            }
+            if (cd > 0)
+            {
+                win32.MouseClick(gH, 250, 632, 500);
+                for (int i = 0; i < 1; i++)
+                    win32.MouseClick(gH, item.X, item.Y, 200);
+            }
+
+            if (isnvwang&&cd==0)
+            {
+                win32.MouseClick(gH, nvwangp.X, nvwangp.Y, 500);
+                win32.MouseClick(gH, item.X, item.Y, 500);
+                win32.MouseClick(gH, nvwangp.X, nvwangp.Y, 500);
+            }
+            else
+            {
+                win32.MouseClick(gH, 40, 632, 500);
+                for (int i = 0; i < 4; i++)
+                    win32.MouseClick(gH, item.X, item.Y, 200);
+                win32.MouseClick(gH, 180, 632, 500);
+                for (int i = 0; i < 6; i++)
+                    win32.MouseClick(gH, item.X, item.Y, 200);
+                win32.MouseClick(gH, 110, 632, 500);
+                for (int i = 0; i < 4; i++)
+                    win32.MouseClick(gH, item.X, item.Y, 200);
+                sleep(0, 40);
+            }
+        }
+
+        private void dodownppp(IntPtr gH)
+        {
+            if (isnvwang)
+            {
+                win32.MouseClick(gH, nvwangp.X, nvwangp.Y, 500);
+                win32.MouseClick(gH, 60, 335, 500);
+                win32.MouseClick(gH, nvwangp.X, nvwangp.Y, 500);
+            }
+            else
+            win32.MouseClick(gH, 297, 524, 2000);
+            if (resourcePoint.Count != 0)
+                return;
+            win32.MouseClick(gH, 64, 545, 1000);
+            win32.MouseClick(gH, 514, 397, 200);
+        }
+
         string newLine = "\r\n";
 
         StringBuilder buffer = new StringBuilder();
@@ -1330,7 +1577,7 @@ namespace 荣耀辅助
         private void sleep(int m, int s)
         {
             int t = m * 60 + s;
-            while (!IsDisposed && t > 0)
+            while (!IsDisposed && t > 0 && isrunscript)
             {
                 Thread.Sleep(1000);
                 //if (!puase)
@@ -1352,17 +1599,45 @@ namespace 荣耀辅助
                 MessageBox.Show("BlueStacks不存在,程序无法运行》》》");
                 Application.Exit();
             }
+            else
+            {
+                setlog("2分钟后自动开始");
+                Task.Factory.StartNew(new Action(() => {
+                    int t = 1200;
+                    while (!IsDisposed && t > 0)
+                    {
+                        Thread.Sleep(100); 
+                        {
+                            t--;
+                        }
+                    }
+                    if (!IsDisposed)
+                        Invoke((MethodInvoker)delegate ()
+                        {
+                            if (button3.Text=="运行")
+                                button3_Click(sender, e);
+                        });
+                }));
+            }
         }
         Bitmap showtj = null;
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (isTimerstop)
+            {
+                setlog("停止脚本");
+                isTimerstop = false;
+                button3.Text = "运行";
+                timer1.Enabled = false;
+                return;
+            }
             MemeryInfo.MEMORY_INFO meminfo = new MemeryInfo.MEMORY_INFO();
             MemeryInfo.GlobalMemoryStatus(ref meminfo);
             decimal m = decimal.Parse(meminfo.dwMemoryLoad.ToString());
-            label11.Text = "内存大小：" + m + "%";
+            label11.Text = "内存占用百分比：" + m + "%";
             if (m > 80)
             {
-
+                Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 win32.SendMessage(Handle, win32.WM_CLOSE, 0, 0);
                 return;
             }

@@ -131,8 +131,16 @@ namespace 荣耀辅助
                 }
             }
             newBtm.Dispose();
+                lineps = new List<Point>();
+
+            if (ps.Count > 0)
+            {
+                lineps.Add(ps[0]);
+            }
             return ps.Count;
         }
+
+        public static List<Point>   lineps  ;
 
         public static List<Point> find1inex(Bitmap srcImg, string key)
         {
@@ -633,10 +641,9 @@ namespace 荣耀辅助
         }
 
 
-        public static List<Point> findssCanxxoo(Bitmap srcImg,Bitmap tempIMg,int f = 8)
+        public static List<Point> findpsspoints(Bitmap srcImg,Bitmap tempIMg,int f = 8)
         {
-            List<Point> ps = new List<Point>();
-            ; 
+            List<Point> ps = new List<Point>(); 
             ps = OPImage.GetImageContains(srcImg, tempIMg, f); 
              
             List<Point> pss = ps.ToList();
@@ -662,10 +669,11 @@ namespace 荣耀辅助
 
             return pss;
         }
+        
 
         public static int w = 806;
         public static int h = 729;
-
+        public static int bu = 0;
         public static List<Point>   getdownpiont(List<Point> ps)
         {
 
@@ -684,7 +692,7 @@ namespace 荣耀辅助
             Rectangle r2 = new Rectangle(v2, new Size(368, 280));
             Rectangle r3 = new Rectangle(v4, new Size(368, 280));
             Rectangle r4 = new Rectangle(v9, new Size(368, 280));
-            Bitmap bm = new Bitmap(w, h);
+            Bitmap bm = new Bitmap(ImageFind.w, ImageFind.h);
             Rectangle[] rects = new Rectangle[] { r1, r2, r3, r4 };
             Point[] pdds = new Point[] { new Point(-1, -1), new Point(1, -1), new Point(-1, 1), new Point(1, 1) };
             Graphics g = Graphics.FromImage(bm);
@@ -718,6 +726,7 @@ namespace 荣耀辅助
                         {
                             x += 2; y -= 1;
                         }
+                        bu = c;
                         rps.Add(new Point(x, y));
                         break;
                     }
@@ -728,6 +737,49 @@ namespace 荣耀辅助
 
         }
 
+
+        public static string findcitadel(Bitmap bm)
+        {
+            string xxx="";
+
+            string[] ss = new string[] {
+            "10 20 -6537160 -6537160 -6471624 -6602696 -10265245",
+            "11 20 -6473984 -4175864 -3583989 -4044792 -4504576",
+            "8 15 -5409210 -6264001 -10400447 -4611169 -4743273",
+            "8 10 -1929160 -1271749 -1269701 -1072324 -615878",
+            "8 14 -1535943 -1335231 -1268934 -1006789 -1538256",
+            "9 7 -11316389 -12631473 -12499120 -12302250 -12302253",
+            "9 8 -13750479 -12697783 -12697268 -12697268 -12630703",
+            "9 13 -12632760 -12566456 -6584453 -2046026 -2177098",
+            "9 12 -13223103 -12764351 -6388873 -2770780 -3296355",
+            "9 11 -12367789 -12105644 -12565424 -6714752 -9343122",
+            "8 15 -1993672 -1074116 -1006017 -1007042 -416194",
+            "8 15 -7183560 -6264771 -5803708 -5935040 -7045510",
+            "8 20 -9024210 -5540283 -6197696 -7644364 -11647676",
+            "9 14 -12565424 -12565424 -12631735 -5728374 -5728112",
+           // "",
+            };
+            foreach (var item in ss)
+            {
+                string[] s = item.Split(new char[] { ' ' });
+                int f = int.Parse(s[1]);
+                string key= s[2] + " " + s[3] + " " + s[4] + " " + s[5] + " " + s[6] + " " + s[1];
+                xxx = "没有发现本";
+                if (find1ine(bm,key) > 0)
+                {
+                    xxx= (s[0] + "本 ");
+                    var ps = getdownpiont(lineps);
+                    xxx += ( bu+" " );
+                    if (bu < 70)
+                    {
+                        xxx += (ps[0].X +" "+ ps[0].Y);
+                    }
+                    else xxx = "本在里面";
+                    break;
+                }
+            }
+            return xxx;
+        }
 
 
     } 
